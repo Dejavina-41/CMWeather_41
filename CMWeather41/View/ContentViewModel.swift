@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum area {
+enum Area {
     case Toyko
     case Saitama
     case Kanagawa
@@ -35,7 +35,7 @@ class ContentViewModel: ObservableObject {
         }
     }
     
-    func selectedArea(area: area) {
+    func selectedArea(area: Area) {
         switch area {
         case .Toyko:
             print("東京")
@@ -59,6 +59,36 @@ class ContentViewModel: ObservableObject {
             print("茨城")
             fetch(lat: 36.342, lon: 140.447)
         }
+    }
+    
+    func getWeatherIcon() -> String {
+        let main = weather!.current.weather[0].main
+        let weatherIcon:  String
+        
+        switch main {
+        case "Clear":
+            weatherIcon = "sun.min.fill"
+            
+        case "Clouds":
+            weatherIcon = "cloud"
+            
+        case "Drizzle":
+            weatherIcon = "cloud.drizzle"
+            
+        case "Rain":
+            weatherIcon = "cloud.rain"
+            
+        case "Thunderstorm":
+            weatherIcon = "cloud.bolt.rain"
+            
+        case "Snow":
+            weatherIcon = "cloud.snow"
+            
+        default:
+            weatherIcon = "carbon.monoxide.cloud"
+        }
+        
+        return weatherIcon
     }
     
 }

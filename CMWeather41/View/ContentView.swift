@@ -39,7 +39,7 @@ struct ContentView: View {
                                 .padding()
                             
                             Text(viewModel.weather!.current.weather[0].main)
-                            Image(systemName: "sun.min.fill")
+                            Image(systemName: viewModel.getWeatherIcon())
                                 .font(.system(size: 100))
                         }
                         Spacer()
